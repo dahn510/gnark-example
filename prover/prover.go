@@ -1,9 +1,8 @@
 package prover
 
 import (
-	"crypto/sha256"
-
 	"github.com/dahn510/gnark-example/circuit"
+
 	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/backend/witness"
