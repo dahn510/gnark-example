@@ -1,17 +1,16 @@
 package circuit
 
 import (
-	"github.com/consensys/gnark/frontend"
-	"github.com/consensys/gnark/std/hash/mimc"
-	"github.com/consensys/gnark/constraint"
 	"github.com/consensys/gnark-crypto/ecc"
+	"github.com/consensys/gnark/constraint"
+	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/frontend/cs/r1cs"
-
+	"github.com/consensys/gnark/std/hash/mimc"
 )
 
 type MimcCircuit struct {
 	PreImage frontend.Variable
-	Hash frontend.Variable `gnark:"hash, public"`
+	Hash frontend.Variable `gnark:",public"`
 }
 
 func (circuit *MimcCircuit) Define(api frontend.API) error {
@@ -20,7 +19,12 @@ func (circuit *MimcCircuit) Define(api frontend.API) error {
 		return err
 	}
 
-	mimc.Write(circuit.Hash)
+	mimc.Write(circuit.PreImage)
+
+	api.Println("m: ", mimc.Sum())
+	api.Println("p: ", circuit.PreImage)
+	api.Println("h: ", circuit.Hash)
+
 	api.AssertIsEqual(mimc.Sum(), circuit.Hash)
 
 	return nil

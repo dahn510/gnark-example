@@ -28,7 +28,7 @@ func (circuit *Circuit) Define(api frontend.API) error {
 }
 
 func main() {
-	msg := "secret_something"
+	msg := "secret_something11111111111111111111111111111119823ab8u2398u823u49823u32982398aaaac4"
 
 	ccs, err := circuit.MakeConstraintSystem()
 	if err != nil {
