@@ -2,6 +2,7 @@ package circuit
 
 import (
 	"github.com/consensys/gnark-crypto/ecc"
+	//"github.com/consensys/gnark-crypto/ecc/bn254/fr"
 	"github.com/consensys/gnark/constraint"
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/frontend/cs/r1cs"
@@ -10,7 +11,7 @@ import (
 
 type MimcCircuit struct {
 	PreImage frontend.Variable
-	Hash frontend.Variable `gnark:",public"`
+	Hash     frontend.Variable `gnark:",public"`
 }
 
 func (circuit *MimcCircuit) Define(api frontend.API) error {
@@ -37,6 +38,6 @@ func MakeConstraintSystem() (constraint.ConstraintSystem, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return ccs, nil
 }
